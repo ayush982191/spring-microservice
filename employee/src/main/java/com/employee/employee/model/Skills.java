@@ -1,10 +1,10 @@
 package com.employee.employee.model;
 
 import com.common.common_library.entity.BaseEntity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "skills")
 public class Skills extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

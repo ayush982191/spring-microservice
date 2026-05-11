@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "family")
+@Table(name = "basic_details")
 public class BasicDetails extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
