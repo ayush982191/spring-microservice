@@ -21,6 +21,12 @@
 	</properties>
 
 	<dependencies>
+		<!--		microservices -->
+		<dependency>
+			<groupId>com.common</groupId>
+			<artifactId>common-library</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<!-- Spring MVC -->
 		<dependency>
