@@ -15,7 +15,8 @@ public class BasicDetails extends BaseEntity {
     private String fatherName;
     private String motherName;
     private Integer totalSiblings;
-
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "education_details_id")
     private List<EducationDetails> educationDetails = new ArrayList<>();
 
 }

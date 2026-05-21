@@ -14,5 +14,4 @@ public class EducationDetails extends BaseEntity {
     private School educationType;
     private String instituteName;
     private Float percentage;
-
 }
