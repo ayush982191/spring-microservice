@@ -33,7 +33,7 @@ public class Employee extends BaseEntity {
     @JoinColumn(name = "basis_details_id")
     private BasicDetails basicDetails;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "employee_skill",
         joinColumns = @JoinColumn(name = "employee_id"),
         inverseJoinColumns = @JoinColumn(name = "author_id")

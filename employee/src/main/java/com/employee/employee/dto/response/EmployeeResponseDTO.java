@@ -18,5 +18,5 @@ public class EmployeeResponseDTO {
     private String empCode;
     private String companyName;
     private List<SkillsResponseDTO> skills;
-    private BasicDetailsResponseDTO basicDetailsResponseDTO;
+    private BasicDetailsResponseDTO details;
 }

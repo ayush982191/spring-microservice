@@ -6,11 +6,19 @@ import com.employee.employee.dto.response.EmployeeResponseDTO;
 import com.employee.employee.model.Employee;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring", uses = {BasicDetailsMapper.class, SkillsMapper.class})
 public interface EmployeeMapper {
+
     @Mapping(source = "basicDetailsRequestDTO", target = "basicDetails")
     Employee toEntity(EmployeeRequestDTO employeeRequestDTO);
+
+    @Mapping(source = "basicDetails", target = "details")
     EmployeeResponseDTO toDTO(Employee employee);
+
+    @Mapping(source = "basicDetailsRequestDTO", target = "basicDetails")
+    void updateEntity(EmployeeRequestDTO requestDTO, @MappingTarget Employee employee);
 }
+
 
