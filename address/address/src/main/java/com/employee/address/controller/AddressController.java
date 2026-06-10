@@ -16,7 +16,7 @@ public interface AddressController {
 
     @Operation(summary = "Create Employee")
     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "Employee Created Successfully")
-    @PostMapping("/create")
+    @PostMapping("/create/{id}")
     ResponseEntity<ApiResponse<AddressResponseDTO>> saveEmployeeAddress(
             @PathVariable Long id,
             @RequestBody AddressRequestDTO requestDTO
