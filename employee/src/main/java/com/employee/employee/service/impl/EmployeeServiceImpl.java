@@ -18,7 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+// testing
 
+// testingt 
 import org.springframework.data.domain.Pageable;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
@@ -167,4 +169,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.deleteById(id);
 
     }
+
+    @Override
+    public Employee findByIdOrAddress(Long empId,Long addressId){
+    if(empId == null && addressId == null){
+        throw new IllegalArgumentException("Please provide empId or addressId");
+    }
+
+        return null;
+    }
+
 }

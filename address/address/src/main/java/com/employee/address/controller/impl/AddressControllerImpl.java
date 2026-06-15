@@ -9,8 +9,7 @@ import com.employee.address.dto.response.AddressResponseDTO;
 import com.employee.address.service.AddressService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -26,12 +25,29 @@ public class AddressControllerImpl implements AddressController  {
                 AddressResponseDTO responseDTO = addressService.saveEmployeeAddress (id,requestDTO);
         ApiResponse<AddressResponseDTO> response = new ApiResponse<>(
                 ResponseStatus.SUCCESS.name(),
-                ResponseMessage.RETRIEVED.getMessage() ,
+                ResponseMessage.RETRIEVED.getMessage(),
                 responseDTO,
                 null
         );
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @Override
+    public  ResponseEntity<ApiResponse<AddressResponseDTO>> findByAddressId(
+            @PathVariable Long addressId
+    ){
+        AddressResponseDTO responseDTO = addressService.findByAddressId(addressId);
+                ApiResponse<AddressResponseDTO> address = new ApiResponse<>(
+                ResponseStatus.SUCCESS.name(),
+                ResponseMessage.RETRIEVED.getMessage() ,
+                        responseDTO,
+                null
+        );
+        return new ResponseEntity<>(address, HttpStatus.OK);
+
+    }
+
+
 }
 
 

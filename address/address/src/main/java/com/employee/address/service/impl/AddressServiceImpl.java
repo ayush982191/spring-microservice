@@ -9,8 +9,6 @@ import com.employee.address.model.Address;
 import com.employee.address.repository.AddressRepository;
 import com.employee.address.service.AddressService;
 import feign.FeignException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,7 +30,22 @@ public class AddressServiceImpl implements AddressService {
             addressRepository.save(address);
             return addressMapper.toDTO(address);
         }catch (FeignException.NotFound e){
-            throw new ResourceNotFoundException("Employee not found with id check " + id);
+            throw new ResourceNotFoundException("Employee not found with id " + id+" calling from address service");
         }
     }
+
+    @Override
+    public AddressResponseDTO findByAddressId(Long id){
+        if(id == null){
+            throw new IllegalArgumentException("Id is not present");
+        }
+        Address address = addressRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Address is not present for this specific id"));
+        return addressMapper.toDTO(address);
+    }
+
+
+
+
+
 }
