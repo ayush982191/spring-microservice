@@ -29,7 +29,14 @@ public interface AddressController {
     ResponseEntity<ApiResponse<AddressResponseDTO>> findByAddressId(
             @PathVariable Long id
     );
+//    /address/internal/
 
+    @Operation(summary = "get Address")
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "Employee Created Successfully")
+    @GetMapping("/address/internal/{id}")
+    ResponseEntity<ApiResponse<AddressResponseDTO>> findByAddressIdInternal(
+            @PathVariable Long id
+    );
 
 
 

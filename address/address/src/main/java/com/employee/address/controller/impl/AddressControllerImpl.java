@@ -47,7 +47,19 @@ public class AddressControllerImpl implements AddressController  {
 
     }
 
-
+    @Override
+    public  ResponseEntity<ApiResponse<AddressResponseDTO>> findByAddressIdInternal(
+            @PathVariable Long addressId
+    ){
+        AddressResponseDTO responseDTO = addressService.findByAddressId(addressId);
+        ApiResponse<AddressResponseDTO> address = new ApiResponse<>(
+                ResponseStatus.SUCCESS.name(),
+                ResponseMessage.RETRIEVED.getMessage() ,
+                responseDTO,
+                null
+        );
+        return new ResponseEntity<>(address, HttpStatus.OK);
+    }
 }
 
 

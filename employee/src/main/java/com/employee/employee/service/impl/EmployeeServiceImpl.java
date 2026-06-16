@@ -3,6 +3,8 @@ package com.employee.employee.service.impl;
 import com.common.common_library.dto.ApiResponse;
 import com.common.common_library.exception.BadRequestException;
 import com.common.common_library.exception.ResourceNotFoundException;
+import com.employee.employee.client.AddressClient;
+import com.employee.employee.client.dto.AddressRequestDTO;
 import com.employee.employee.controller.EmployeeController;
 import com.employee.employee.dto.request.EmployeeRequestDTO;
 import com.employee.employee.dto.request.SkillsRequestDTO;
@@ -36,12 +38,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeMapper employeeMapper;
     private final SkillRepository skillRepository;
     private final SkillsMapper skillsMapper;
+    private final AddressClient addressClient;
 
-    EmployeeServiceImpl(EmployeeRepository employeeRepository,EmployeeMapper employeeMapper,SkillRepository skillRepository,SkillsMapper skillsMapper){
+    EmployeeServiceImpl(AddressClient addressClient, EmployeeRepository employeeRepository,EmployeeMapper employeeMapper,SkillRepository skillRepository,SkillsMapper skillsMapper){
         this.employeeRepository = employeeRepository;
         this.employeeMapper = employeeMapper;
         this.skillRepository = skillRepository;
         this.skillsMapper = skillsMapper;
+        this.addressClient = addressClient;
     }
 
     @Override
@@ -175,8 +179,23 @@ public class EmployeeServiceImpl implements EmployeeService {
     if(empId == null && addressId == null){
         throw new IllegalArgumentException("Please provide empId or addressId");
     }
-
+        Long resolvedAddressId = null;
+        if (addressId != null) {
+            try {
+                addressClient.findByAddressId(addressId);
+                resolvedAddressId = addressId;
+            } catch (Exception e) {
+                resolvedAddressId = null;
+            }
+        }
+        if(empId != null)
+        return employeeRepository.findById(empId)
+                .orElseThrow(()->new ResourceNotFoundException("Employee Not found "));
         return null;
     }
+
+
+
+
 
 }
